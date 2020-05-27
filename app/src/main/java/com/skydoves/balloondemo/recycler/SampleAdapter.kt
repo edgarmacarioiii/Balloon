@@ -27,37 +27,37 @@ import kotlinx.android.synthetic.main.item_sample.view.sample0_name
 
 @Suppress("PrivatePropertyName")
 class SampleAdapter(
-  private val delegate: SampleViewHolder.Delegate
+    private val delegate: SampleViewHolder.Delegate
 ) : RecyclerView.Adapter<SampleAdapter.SampleViewHolder>() {
 
-  private val sampleItems = mutableListOf<SampleItem>()
+    private val sampleItems = mutableListOf<SampleItem>()
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
-    val inflater = LayoutInflater.from(parent.context)
-    return SampleViewHolder(inflater.inflate(R.layout.item_sample, parent, false))
-  }
-
-  override fun onBindViewHolder(holder: SampleViewHolder, position: Int) {
-    val sampleItem = this.sampleItems[position]
-    holder.itemView.run {
-      sample0_avatar.setImageDrawable(sampleItem.image)
-      sample0_name.text = sampleItem.name
-      sample0_content.text = sampleItem.content
-      setOnClickListener { delegate.onItemClick(sampleItem, this) }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        return SampleViewHolder(inflater.inflate(R.layout.item_sample, parent, false))
     }
-  }
 
-  fun addItems(sampleItems: List<SampleItem>) {
-    this.sampleItems.addAll(sampleItems)
-    notifyDataSetChanged()
-  }
-
-  override fun getItemCount() = this.sampleItems.size
-
-  class SampleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-    interface Delegate {
-      fun onItemClick(sampleItem: SampleItem, view: View)
+    override fun onBindViewHolder(holder: SampleViewHolder, position: Int) {
+        val sampleItem = this.sampleItems[position]
+        holder.itemView.run {
+            sample0_avatar.setImageDrawable(sampleItem.image)
+            sample0_name.text = sampleItem.name
+            sample0_content.text = sampleItem.content
+            setOnClickListener { delegate.onItemClick(sampleItem, this) }
+        }
     }
-  }
+
+    fun addItems(sampleItems: List<SampleItem>) {
+        this.sampleItems.addAll(sampleItems)
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount() = this.sampleItems.size
+
+    class SampleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        interface Delegate {
+            fun onItemClick(sampleItem: SampleItem, view: View)
+        }
+    }
 }

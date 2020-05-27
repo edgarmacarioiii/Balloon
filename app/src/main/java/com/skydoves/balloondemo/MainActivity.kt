@@ -33,49 +33,49 @@ import kotlinx.android.synthetic.main.activity_main.recyclerView
 import kotlinx.android.synthetic.main.activity_main.tabLayout
 
 class MainActivity : AppCompatActivity(),
-  SampleAdapter.SampleViewHolder.Delegate,
-  OnBalloonClickListener {
+    SampleAdapter.SampleViewHolder.Delegate,
+    OnBalloonClickListener {
 
-  private val adapter by lazy { SampleAdapter(this) }
-  private val profileBalloon by lazy { BalloonUtils.getProfileBalloon(this, this) }
-  private val navigationBalloon by lazy { BalloonUtils.getNavigationBalloon(this, this, this) }
-  private val viewHolderBalloon by balloon(ViewHolderBalloonFactory::class)
+    private val adapter by lazy { SampleAdapter(this) }
+    private val profileBalloon by lazy { BalloonUtils.getProfileBalloon(this, this) }
+    private val navigationBalloon by lazy { BalloonUtils.getNavigationBalloon(this, this, this) }
+    private val viewHolderBalloon by balloon(ViewHolderBalloonFactory::class)
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-    tabLayout.addTab(tabLayout.newTab().setText("Timeline"))
-    tabLayout.addTab(tabLayout.newTab().setText("Contents"))
+        tabLayout.addTab(tabLayout.newTab().setText("Timeline"))
+        tabLayout.addTab(tabLayout.newTab().setText("Contents"))
 
-    recyclerView.adapter = adapter
-    adapter.addItems(ItemUtils.getSamples(this))
+        recyclerView.adapter = adapter
+        adapter.addItems(ItemUtils.getSamples(this))
 
-    button.showAlignTop(profileBalloon)
-    button.setOnClickListener {
-      if (profileBalloon.isShowing) {
-        profileBalloon.dismiss()
-      } else {
-        profileBalloon.showAlignTop(it)
-      }
+        button.showAlignTop(profileBalloon)
+        button.setOnClickListener {
+            if (profileBalloon.isShowing) {
+                profileBalloon.dismiss()
+            } else {
+                profileBalloon.showAlignTop(it)
+            }
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            if (navigationBalloon.isShowing) {
+                navigationBalloon.dismiss()
+            } else {
+                navigationBalloon.showAlignTop(bottomNavigationView)
+            }
+            true
+        }
     }
 
-    bottomNavigationView.setOnNavigationItemSelectedListener {
-      if (navigationBalloon.isShowing) {
+    override fun onBalloonClick(view: View) {
         navigationBalloon.dismiss()
-      } else {
-        navigationBalloon.showAlignTop(bottomNavigationView)
-      }
-      true
+        Toast.makeText(applicationContext, "dismissed", Toast.LENGTH_SHORT).show()
     }
-  }
 
-  override fun onBalloonClick(view: View) {
-    navigationBalloon.dismiss()
-    Toast.makeText(applicationContext, "dismissed", Toast.LENGTH_SHORT).show()
-  }
-
-  override fun onItemClick(sampleItem: SampleItem, view: View) {
-    this.viewHolderBalloon.showAlignBottom(view)
-  }
+    override fun onItemClick(sampleItem: SampleItem, view: View) {
+        this.viewHolderBalloon.showAlignBottom(view)
+    }
 }

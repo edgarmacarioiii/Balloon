@@ -19,6 +19,6 @@ package com.skydoves.balloondemo.recycler
 import android.graphics.drawable.Drawable
 
 data class CustomItem(
-  val icon: Drawable?,
-  val title: String
+    val icon: Drawable?,
+    val title: String
 )

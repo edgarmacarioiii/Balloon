@@ -27,20 +27,20 @@ import com.skydoves.balloondemo.R
 
 class ProfileBalloonFactory : Balloon.Factory() {
 
-  override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
-    return createBalloon(context) {
-      setLayout(R.layout.layout_custom_profile)
-      setArrowSize(10)
-      setArrowOrientation(ArrowOrientation.TOP)
-      setArrowPosition(0.5f)
-      isRtlSupport(BalloonUtils.isRtlLayout())
-      setCornerRadius(4f)
-      setElevation(6)
-      setBackgroundColorResource(R.color.white)
-      setBalloonAnimation(BalloonAnimation.CIRCULAR)
-      setDismissWhenTouchOutside(true)
-      setDismissWhenShowAgain(true)
-      setLifecycleOwner(lifecycle)
+    override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
+        return createBalloon(context) {
+            setLayout(R.layout.layout_custom_profile)
+            setArrowSize(10)
+            setArrowOrientation(ArrowOrientation.TOP)
+            setArrowPosition(0.5f)
+            isRtlSupport(BalloonUtils.isRtlLayout())
+            setCornerRadius(4f)
+            setElevation(6)
+            setBackgroundColorResource(R.color.white)
+            setBalloonAnimation(BalloonAnimation.CIRCULAR)
+            setDismissWhenTouchOutside(true)
+            setDismissWhenShowAgain(true)
+            setLifecycleOwner(lifecycle)
+        }
     }
-  }
 }

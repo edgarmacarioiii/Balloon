@@ -28,51 +28,51 @@ import java.util.Locale
 
 object BalloonUtils {
 
-  fun getProfileBalloon(context: Context, lifecycleOwner: LifecycleOwner): Balloon {
-    return Balloon.Builder(context)
-      .setText("You can edit your profile now!")
-      .setArrowSize(10)
-      .setPadding(12)
-      .setTextSize(15f)
-      .isRtlSupport(isRtlLayout())
-      .setCornerRadius(8f)
-      .setTextColorResource(R.color.white_87)
-      .setIconDrawableResource(R.drawable.ic_edit)
-      .setBackgroundColorResource(R.color.skyBlue)
-      .setOnBalloonDismissListener {
-        Toast.makeText(context.applicationContext, "dismissed", Toast.LENGTH_SHORT).show()
-      }
-      .setBalloonAnimation(BalloonAnimation.ELASTIC)
-      .setLifecycleOwner(lifecycleOwner)
-      .build()
-  }
+    fun getProfileBalloon(context: Context, lifecycleOwner: LifecycleOwner): Balloon {
+        return Balloon.Builder(context)
+            .setText("You can edit your profile now!")
+            .setArrowSize(10)
+            .setPadding(12)
+            .setTextSize(15f)
+            .isRtlSupport(isRtlLayout())
+            .setCornerRadius(8f)
+            .setTextColorResource(R.color.white_87)
+            .setIconDrawableResource(R.drawable.ic_edit)
+            .setBackgroundColorResource(R.color.skyBlue)
+            .setOnBalloonDismissListener {
+                Toast.makeText(context.applicationContext, "dismissed", Toast.LENGTH_SHORT).show()
+            }
+            .setBalloonAnimation(BalloonAnimation.ELASTIC)
+            .setLifecycleOwner(lifecycleOwner)
+            .build()
+    }
 
-  fun getNavigationBalloon(
-    context: Context,
-    onBalloonClickListener: OnBalloonClickListener,
-    lifecycleOwner: LifecycleOwner
-  ): Balloon {
-    return Balloon.Builder(context)
-      .setText("You can access your profile from on now.")
-      .setArrowSize(10)
-      .setWidthRatio(1.0f)
-      .setTextSize(15f)
-      .setArrowPosition(0.62f)
-      .isRtlSupport(isRtlLayout())
-      .setPadding(10)
-      .setCornerRadius(4f)
-      .setAlpha(0.9f)
-      .setTextColorResource(R.color.white_93)
-      .setIconDrawableResource(R.drawable.ic_profile)
-      .setBackgroundColorResource(R.color.colorPrimary)
-      .setOnBalloonClickListener(onBalloonClickListener)
-      .setBalloonAnimation(BalloonAnimation.FADE)
-      .setLifecycleOwner(lifecycleOwner)
-      .build()
-  }
+    fun getNavigationBalloon(
+        context: Context,
+        onBalloonClickListener: OnBalloonClickListener,
+        lifecycleOwner: LifecycleOwner
+    ): Balloon {
+        return Balloon.Builder(context)
+            .setText("You can access your profile from on now.")
+            .setArrowSize(10)
+            .setWidthRatio(1.0f)
+            .setTextSize(15f)
+            .setArrowPosition(0.62f)
+            .isRtlSupport(isRtlLayout())
+            .setPadding(10)
+            .setCornerRadius(4f)
+            .setAlpha(0.9f)
+            .setTextColorResource(R.color.white_93)
+            .setIconDrawableResource(R.drawable.ic_profile)
+            .setBackgroundColorResource(R.color.colorPrimary)
+            .setOnBalloonClickListener(onBalloonClickListener)
+            .setBalloonAnimation(BalloonAnimation.FADE)
+            .setLifecycleOwner(lifecycleOwner)
+            .build()
+    }
 
-  fun isRtlLayout(): Boolean {
-    return TextUtilsCompat.getLayoutDirectionFromLocale(
-      Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL
-  }
+    fun isRtlLayout(): Boolean {
+        return TextUtilsCompat.getLayoutDirectionFromLocale(
+            Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL
+    }
 }

@@ -26,21 +26,21 @@ import com.skydoves.balloondemo.R
 
 class TagBalloonFactory : Balloon.Factory() {
 
-  override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
-    return createBalloon(context) {
-      setLayout(R.layout.layout_custom_tag)
-      setArrowSize(10)
-      setArrowOrientation(ArrowOrientation.BOTTOM)
-      setArrowPosition(0.5f)
-      setPadding(4)
-      isRtlSupport(BalloonUtils.isRtlLayout())
-      setCornerRadius(4f)
-      setBalloonAnimationStyle(R.style.Fade)
-      setBackgroundColorResource(R.color.white_93)
-      setAutoDismissDuration(2000L)
-      setDismissWhenClicked(true)
-      setDismissWhenShowAgain(true)
-      setLifecycleOwner(lifecycle)
+    override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
+        return createBalloon(context) {
+            setLayout(R.layout.layout_custom_tag)
+            setArrowSize(10)
+            setArrowOrientation(ArrowOrientation.BOTTOM)
+            setArrowPosition(0.5f)
+            setPadding(4)
+            isRtlSupport(BalloonUtils.isRtlLayout())
+            setCornerRadius(4f)
+            setBalloonAnimationStyle(R.style.Fade)
+            setBackgroundColorResource(R.color.white_93)
+            setAutoDismissDuration(2000L)
+            setDismissWhenClicked(true)
+            setDismissWhenShowAgain(true)
+            setLifecycleOwner(lifecycle)
+        }
     }
-  }
 }

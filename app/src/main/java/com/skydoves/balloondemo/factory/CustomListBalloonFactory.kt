@@ -26,22 +26,22 @@ import com.skydoves.balloondemo.R
 
 class CustomListBalloonFactory : Balloon.Factory() {
 
-  override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
-    return Balloon.Builder(context)
-      .setLayout(R.layout.layout_custom_list)
-      .setArrowSize(10)
-      .setArrowOrientation(ArrowOrientation.TOP)
-      .setArrowPosition(0.85f)
-      .setWidth(170)
-      .setHeight(200)
-      .setTextSize(12f)
-      .isRtlSupport(BalloonUtils.isRtlLayout())
-      .setCornerRadius(4f)
-      .setElevation(6)
-      .setBackgroundColorResource(R.color.background800)
-      .setBalloonAnimation(BalloonAnimation.FADE)
-      .setDismissWhenShowAgain(true)
-      .setLifecycleOwner(lifecycle)
-      .build()
-  }
+    override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
+        return Balloon.Builder(context)
+            .setLayout(R.layout.layout_custom_list)
+            .setArrowSize(10)
+            .setArrowOrientation(ArrowOrientation.TOP)
+            .setArrowPosition(0.85f)
+            .setWidth(170)
+            .setHeight(200)
+            .setTextSize(12f)
+            .isRtlSupport(BalloonUtils.isRtlLayout())
+            .setCornerRadius(4f)
+            .setElevation(6)
+            .setBackgroundColorResource(R.color.background800)
+            .setBalloonAnimation(BalloonAnimation.FADE)
+            .setDismissWhenShowAgain(true)
+            .setLifecycleOwner(lifecycle)
+            .build()
+    }
 }

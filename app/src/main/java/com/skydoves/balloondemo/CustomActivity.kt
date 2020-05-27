@@ -39,58 +39,58 @@ import kotlinx.android.synthetic.main.activity_custom.tabLayout
 import kotlinx.android.synthetic.main.toolbar_custom.toolbar_list
 
 class CustomActivity : AppCompatActivity(),
-  SampleAdapter.SampleViewHolder.Delegate,
-  CustomAdapter.CustomViewHolder.Delegate {
+    SampleAdapter.SampleViewHolder.Delegate,
+    CustomAdapter.CustomViewHolder.Delegate {
 
-  private val adapter by lazy { SampleAdapter(this) }
-  private val customAdapter by lazy { CustomAdapter(this) }
-  private val customListBalloon by balloon(CustomListBalloonFactory::class)
-  private val customProfileBalloon by balloon(ProfileBalloonFactory::class)
-  private val viewHolderBalloon by balloon(ViewHolderBalloonFactory::class)
-  private val customTagBalloon by balloon(TagBalloonFactory::class)
+    private val adapter by lazy { SampleAdapter(this) }
+    private val customAdapter by lazy { CustomAdapter(this) }
+    private val customListBalloon by balloon(CustomListBalloonFactory::class)
+    private val customProfileBalloon by balloon(ProfileBalloonFactory::class)
+    private val customTagBalloon by balloon(TagBalloonFactory::class)
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_custom)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_custom)
 
-    tabLayout.addTab(tabLayout.newTab().setText("Timeline"))
-    tabLayout.addTab(tabLayout.newTab().setText("Contents"))
+        tabLayout.addTab(tabLayout.newTab().setText("Timeline"))
+        tabLayout.addTab(tabLayout.newTab().setText("Contents"))
 
-    recyclerView.adapter = adapter
-    adapter.addItems(ItemUtils.getSamples(this))
+        recyclerView.adapter = adapter
+        adapter.addItems(ItemUtils.getSamples(this))
 
-    // gets customListBalloon's recyclerView.
-    val listRecycler: RecyclerView =
-      customListBalloon.getContentView().findViewById(R.id.list_recyclerView)
-    listRecycler.adapter = customAdapter
-    this.customAdapter.addCustomItem(ItemUtils.getCustomSamples(this))
+        // gets customListBalloon's recyclerView.
+        val listRecycler: RecyclerView =
+            customListBalloon.getContentView().findViewById(R.id.list_recyclerView)
+        listRecycler.adapter = customAdapter
+        this.customAdapter.addCustomItem(ItemUtils.getCustomSamples(this))
 
-    toolbar_list.setOnClickListener {
-      this.customListBalloon.showAlignBottom(it)
+        toolbar_list.setOnClickListener {
+            this.customListBalloon.showAlignBottom(it)
+        }
+
+        circleImageView.setOnClickListener {
+            this.customProfileBalloon.showAlignBottom(it)
+        }
+
+        val buttonEdit: Button = customProfileBalloon.getContentView().findViewById(R.id.button_edit)
+        buttonEdit.setOnClickListener {
+            this.customProfileBalloon.dismiss()
+            Toast.makeText(applicationContext, "Edit", Toast.LENGTH_SHORT).show()
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            this.customTagBalloon.showAlignTop(bottomNavigationView, 130, 0)
+            true
+        }
     }
 
-    circleImageView.setOnClickListener {
-      this.customProfileBalloon.showAlignBottom(it)
+    override fun onCustomItemClick(customItem: CustomItem) {
+        this.customListBalloon.dismiss()
+        Toast.makeText(applicationContext, customItem.title, Toast.LENGTH_SHORT).show()
     }
 
-    val buttonEdit: Button = customProfileBalloon.getContentView().findViewById(R.id.button_edit)
-    buttonEdit.setOnClickListener {
-      this.customProfileBalloon.dismiss()
-      Toast.makeText(applicationContext, "Edit", Toast.LENGTH_SHORT).show()
+    override fun onItemClick(sampleItem: SampleItem, view: View) {
+        val viewHolderBalloon by balloon(ViewHolderBalloonFactory::class)
+        viewHolderBalloon.showAlignBottom(view)
     }
-
-    bottomNavigationView.setOnNavigationItemSelectedListener {
-      this.customTagBalloon.showAlignTop(bottomNavigationView, 130, 0)
-      true
-    }
-  }
-
-  override fun onCustomItemClick(customItem: CustomItem) {
-    this.customListBalloon.dismiss()
-    Toast.makeText(applicationContext, customItem.title, Toast.LENGTH_SHORT).show()
-  }
-
-  override fun onItemClick(sampleItem: SampleItem, view: View) {
-    this.viewHolderBalloon.showAlignBottom(view)
-  }
 }

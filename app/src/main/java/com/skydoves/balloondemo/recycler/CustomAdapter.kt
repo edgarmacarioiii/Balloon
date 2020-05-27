@@ -25,36 +25,36 @@ import kotlinx.android.synthetic.main.item_custom.view.item_custom_icon
 import kotlinx.android.synthetic.main.item_custom.view.item_custom_title
 
 class CustomAdapter(
-  private val delegate: CustomViewHolder.Delegate
+    private val delegate: CustomViewHolder.Delegate
 ) : RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
 
-  private val customItems = mutableListOf<CustomItem>()
+    private val customItems = mutableListOf<CustomItem>()
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-    val inflater = LayoutInflater.from(parent.context)
-    return CustomViewHolder(inflater.inflate(R.layout.item_custom, parent, false))
-  }
-
-  override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-    val customItem = this.customItems[position]
-    holder.itemView.run {
-      item_custom_icon.setImageDrawable(customItem.icon)
-      item_custom_title.text = customItem.title
-      setOnClickListener { delegate.onCustomItemClick(customItem) }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        return CustomViewHolder(inflater.inflate(R.layout.item_custom, parent, false))
     }
-  }
 
-  fun addCustomItem(customList: List<CustomItem>) {
-    this.customItems.addAll(customList)
-    notifyDataSetChanged()
-  }
-
-  override fun getItemCount() = this.customItems.size
-
-  class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-    interface Delegate {
-      fun onCustomItemClick(customItem: CustomItem)
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+        val customItem = this.customItems[position]
+        holder.itemView.run {
+            item_custom_icon.setImageDrawable(customItem.icon)
+            item_custom_title.text = customItem.title
+            setOnClickListener { delegate.onCustomItemClick(customItem) }
+        }
     }
-  }
+
+    fun addCustomItem(customList: List<CustomItem>) {
+        this.customItems.addAll(customList)
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount() = this.customItems.size
+
+    class CustomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        interface Delegate {
+            fun onCustomItemClick(customItem: CustomItem)
+        }
+    }
 }

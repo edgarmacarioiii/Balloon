@@ -29,31 +29,31 @@ import com.skydoves.balloondemo.R
 
 class ViewHolderBalloonFactory : Balloon.Factory() {
 
-  override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
-    val textForm = textForm(context) {
-      setText("This is your new content!!!")
-      setTextSize(15f)
-      setTextColorResource(R.color.white_87)
-    }
+    override fun create(context: Context, lifecycle: LifecycleOwner?): Balloon {
+        val textForm = textForm(context) {
+            setText("This is your new content!!!")
+            setTextSize(15f)
+            setTextColorResource(R.color.white_87)
+        }
 
-    return createBalloon(context) {
-      setArrowSize(10)
-      setPadding(10)
-      setCornerRadius(8f)
-      setElevation(4)
-      setTextForm(textForm)
-      isRtlSupport(isRtlLayout())
-      setArrowOrientation(ArrowOrientation.TOP)
-      setIconDrawableResource(R.drawable.ic_edit)
-      setBackgroundColorResource(R.color.yellow)
-      setOnBalloonDismissListener {
-        Toast.makeText(context, "dismissed", Toast.LENGTH_SHORT).show()
-      }
-      setDismissWhenClicked(true)
-      setDismissWhenShowAgain(true)
-      setBalloonAnimation(BalloonAnimation.ELASTIC)
-      setLifecycleOwner(lifecycle)
-      build()
+        return createBalloon(context) {
+            setArrowSize(10)
+            setPadding(10)
+            setCornerRadius(8f)
+            setElevation(4)
+            setTextForm(textForm)
+            isRtlSupport(isRtlLayout())
+            setArrowOrientation(ArrowOrientation.TOP)
+            setIconDrawableResource(R.drawable.ic_edit)
+            setBackgroundColorResource(R.color.yellow)
+            setOnBalloonDismissListener {
+                Toast.makeText(context, "dismissed", Toast.LENGTH_SHORT).show()
+            }
+            setDismissWhenClicked(true)
+            setDismissWhenShowAgain(true)
+            setBalloonAnimation(BalloonAnimation.ELASTIC)
+            setLifecycleOwner(lifecycle)
+            build()
+        }
     }
-  }
 }
